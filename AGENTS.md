@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All portfolio copy, links and project data live in `src/data/portfolio.ts`; section components only render it. Why: content edits stay in one file.
+- The portfolio is a single scrolling page at `/` with in-page section anchors (user asked for one page with sections). Why: nav links scroll to sections.
+- `public/resume.pdf` is a generated starter resume; replace it with the owner's real file when provided.
