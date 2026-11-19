@@ -1,95 +1,117 @@
-import { ArrowUpRight, Github, Check } from "lucide-react";
-import { projects, type Project } from "@/data/portfolio";
+import { useState } from "react";
+import { ArrowUpRight, Github, Info, Clock } from "lucide-react";
+import { filterProjects, projectFilters, projects, type Project, type ProjectFilter } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Reveal, handleSpotlight } from "./Reveal";
+import { handleSpotlight } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { ProjectThumb } from "./ProjectThumb";
 
-function ProjectCard({ p, index }: { p: Project; index: number }) {
+function ProjectCard({ p }: { p: Project }) {
   return (
     <article
       onMouseMove={handleSpotlight}
-      className={cn(
-        "glass spotlight gradient-border group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-card sm:p-8",
-      )}
+      className="glass spotlight gradient-border group flex h-full flex-col rounded-3xl p-4 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-card sm:p-5"
     >
-      <div className="mb-6 flex items-start justify-between gap-4">
-        <span className="font-mono text-xs uppercase tracking-[0.18em] text-primary-glow">{p.tag}</span>
-        <span className="font-mono text-5xl font-light leading-none text-border transition-colors duration-500 group-hover:text-primary/40">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
+      <ProjectThumb visual={p.visual} label={p.title} />
 
-      <h3 className="text-2xl font-semibold tracking-tight text-foreground sm:text-[1.7rem]">
-        {p.title}
-      </h3>
-      <p className="mt-3 leading-relaxed text-muted-foreground">{p.description}</p>
+      <div className="flex flex-1 flex-col px-1 pt-5">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{p.category}</span>
+          <span className="rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-primary-glow">{p.highlight}</span>
+        </div>
 
-      <ul className="mt-5 space-y-2">
-        {p.highlights.map((h) => (
-          <li key={h} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-            {h}
-          </li>
-        ))}
-      </ul>
+        <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">{p.title}</h3>
+        <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
 
-      <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
-        {p.tech.map((t) => (
-          <li
-            key={t}
-            className="rounded-full border border-border bg-background/40 px-3 py-1 font-mono text-[11px] text-foreground"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
+        {p.note && (
+          <p className="mt-3 flex items-start gap-2 rounded-xl border border-chart-5/30 bg-chart-5/10 px-3 py-2 text-xs text-foreground">
+            <Info className="mt-px h-3.5 w-3.5 shrink-0 text-chart-5" />
+            {p.note}
+          </p>
+        )}
 
-      <div className="mt-auto flex flex-wrap gap-3 pt-8">
-        <Button asChild variant="glass" size="pill">
-          <a href={p.github} target="_blank" rel="noreferrer" aria-label={`${p.title} on GitHub`}>
-            <Github /> GitHub
-          </a>
-        </Button>
-        <Button asChild variant="glow" size="pill" className="group/btn">
-          <a href={p.demo} target="_blank" rel="noreferrer" aria-label={`${p.title} live demo`}>
-            Live Demo
-            <ArrowUpRight className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
-          </a>
-        </Button>
+        <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Technologies">
+          {p.tech.map((t) => (
+            <li key={t} className="rounded-full border border-border bg-background/40 px-2.5 py-1 font-mono text-[10.5px] text-foreground">
+              {t}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-6">
+          {p.github && (
+            <Button asChild variant="glass" size="pill">
+              <a href={p.github} target="_blank" rel="noreferrer" aria-label={`${p.title} on GitHub`}>
+                <Github /> GitHub
+              </a>
+            </Button>
+          )}
+          {p.demo ? (
+            <Button asChild variant="glow" size="pill" className="group/btn">
+              <a href={p.demo} target="_blank" rel="noreferrer" aria-label={`${p.title} live demo`}>
+                Live Demo
+                <ArrowUpRight className="transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+              </a>
+            </Button>
+          ) : (
+            <span className="inline-flex h-9 items-center gap-1.5 rounded-full border border-dashed border-border px-4 text-sm text-muted-foreground">
+              <Clock className="h-3.5 w-3.5" /> Live demo coming soon
+            </span>
+          )}
+        </div>
       </div>
     </article>
   );
 }
 
 export function Projects() {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
+  const [filter, setFilter] = useState<ProjectFilter>("All Projects");
+  const visible = filterProjects(projects, filter);
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
-      <div aria-hidden className="aurora-violet pointer-events-none absolute -left-40 top-1/4 h-[30rem] w-[30rem] rounded-full opacity-50" />
+    <section id="projects" className="relative py-24 sm:py-28">
+      <div aria-hidden className="aurora-violet pointer-events-none absolute -right-40 top-1/4 h-[30rem] w-[30rem] rounded-full opacity-40" />
       <div className="relative mx-auto max-w-6xl px-6">
         <SectionHeading
-          index="03"
+          index="05"
           eyebrow="Featured projects"
           title="Things I've"
           accent="built."
-          description="A mix of AI systems and full-stack applications — each one designed around a real user and a real problem."
+          description="AI systems and full-stack applications — each one built to solve a practical problem."
         />
 
-        <div className="grid gap-5 lg:grid-cols-2">
-          {featured.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 100}>
-              <ProjectCard p={p} index={i} />
-            </Reveal>
-          ))}
+        <div role="group" aria-label="Filter projects" className="mb-10 flex flex-wrap gap-2">
+          {projectFilters.map((f) => {
+            const count = filterProjects(projects, f).length;
+            const on = f === filter;
+            return (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={on}
+                onClick={() => setFilter(f)}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-all duration-300",
+                  on
+                    ? "bg-gradient-primary text-primary-foreground shadow-glow"
+                    : "glass text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                )}
+              >
+                {f}
+                <span className={cn("font-mono text-[11px]", on ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
-        <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {rest.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 100}>
-              <ProjectCard p={p} index={i + featured.length} />
-            </Reveal>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+          {visible.map((p) => (
+            <div key={`${filter}-${p.slug}`} className="animate-in fade-in zoom-in-95 duration-500">
+              <ProjectCard p={p} />
+            </div>
           ))}
         </div>
       </div>

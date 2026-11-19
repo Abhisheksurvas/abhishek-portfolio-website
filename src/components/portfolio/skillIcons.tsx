@@ -1,26 +1,34 @@
 import type { ComponentType } from "react";
 import {
-  SiPython,
+  SiHtml5,
+  SiCss,
   SiJavascript,
   SiReact,
   SiNodedotjs,
+  SiPhp,
+  SiPython,
   SiMongodb,
-  SiHtml5,
-  SiCss,
+  SiMysql,
   SiGit,
 } from "react-icons/si";
-import { Brain, MessagesSquare, DatabaseZap } from "lucide-react";
+import { Sparkles, MessagesSquare, DatabaseZap, Bot, Webhook, MonitorSmartphone, Database } from "lucide-react";
 
 export const skillIcons: Record<string, ComponentType<{ className?: string }>> = {
-  Python: SiPython,
+  HTML5: SiHtml5,
+  CSS3: SiCss,
   JavaScript: SiJavascript,
-  React: SiReact,
-  "Node.js": SiNodedotjs,
+  "React.js": SiReact,
+  "Node.js (Basics)": SiNodedotjs,
+  "PHP (Basic)": SiPhp,
+  Python: SiPython,
   MongoDB: SiMongodb,
-  HTML: SiHtml5,
-  CSS: SiCss,
+  MySQL: SiMysql,
+  "Generative AI": Sparkles,
+  "AI/LLMs": MessagesSquare,
+  "Retrieval-Augmented Generation (RAG)": DatabaseZap,
+  "AI-powered application development": Bot,
   Git: SiGit,
-  AI: Brain,
-  LLM: MessagesSquare,
-  RAG: DatabaseZap,
+  "REST APIs": Webhook,
+  "Responsive Web Design": MonitorSmartphone,
+  "Database Management": Database,
 };

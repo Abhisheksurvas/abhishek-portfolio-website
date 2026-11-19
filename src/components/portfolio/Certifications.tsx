@@ -1,74 +1,52 @@
-import { Award, ArrowUpRight, Trophy, Target, GitPullRequest } from "lucide-react";
-import { achievements, certifications } from "@/data/portfolio";
+import { Award, ArrowUpRight, BadgeCheck } from "lucide-react";
+import { certifications } from "@/data/portfolio";
+import { Button } from "@/components/ui/button";
 import { Reveal, handleSpotlight } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-const achievementIcons = [Trophy, Target, GitPullRequest];
-
 export function Certifications() {
   return (
-    <section id="certifications" className="relative py-24 sm:py-32">
+    <section id="certifications" className="relative py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          index="04"
-          eyebrow="Certifications & achievements"
-          title="Always"
-          accent="learning."
-        />
+        <SectionHeading index="06" eyebrow="Certifications & achievements" title="Always" accent="learning." />
 
-        <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr]">
-          <div>
-            <h3 className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Certifications
-            </h3>
-            <ul className="space-y-3">
-              {certifications.map((c, i) => (
-                <Reveal as="li" key={c.title} delay={i * 70}>
-                  <a
-                    href={c.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    onMouseMove={handleSpotlight}
-                    className="glass spotlight group flex items-center gap-5 rounded-2xl p-5 transition-all duration-300 hover:border-primary/40"
-                  >
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent text-primary">
-                      <Award className="h-5 w-5" />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-medium text-foreground">{c.title}</span>
-                      <span className="mt-0.5 block text-sm text-muted-foreground">{c.issuer}</span>
-                    </span>
-                    <span className="hidden font-mono text-xs text-muted-foreground sm:block">{c.year}</span>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-                  </a>
-                </Reveal>
-              ))}
-            </ul>
-          </div>
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {certifications.map((c, i) => (
+            <Reveal as="li" key={c.title} delay={i * 80}>
+              <article
+                onMouseMove={handleSpotlight}
+                className="glass spotlight gradient-border group relative flex h-full flex-col overflow-hidden rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-card"
+              >
+                {/* certificate-style corner ribbon + seal */}
+                <div aria-hidden className="absolute -right-8 -top-8 h-24 w-24 rounded-full border border-primary/30" />
+                <div aria-hidden className="absolute -right-4 -top-4 h-16 w-16 rounded-full border border-electric/20" />
 
-          <div>
-            <h3 className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Achievements
-            </h3>
-            <ol className="relative space-y-3 border-l border-border pl-6">
-              {achievements.map((a, i) => {
-                const Icon = achievementIcons[i] ?? Trophy;
-                return (
-                  <Reveal as="li" key={a.title} delay={i * 90} className="relative">
-                    <span className="absolute -left-[33px] top-6 h-4 w-4 rounded-full border-2 border-background bg-gradient-primary shadow-glow" />
-                    <div className="glass rounded-2xl p-5">
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="h-4 w-4 text-primary-glow" />
-                        <h4 className="font-medium text-foreground">{a.title}</h4>
-                      </div>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
-                    </div>
-                  </Reveal>
-                );
-              })}
-            </ol>
-          </div>
-        </div>
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-glow transition-transform duration-500 group-hover:rotate-6">
+                  <Award className="h-6 w-6" />
+                </span>
+
+                <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Certificate</p>
+                <h3 className="mt-1.5 text-lg font-semibold leading-snug text-foreground">{c.title}</h3>
+
+                <div className="mt-auto pt-6">
+                  <div className="border-t border-dashed border-border pt-4">
+                    <p className="flex items-center gap-1.5 text-sm text-foreground">
+                      <BadgeCheck className="h-4 w-4 shrink-0 text-electric" /> {c.issuer}
+                    </p>
+                    {c.year && <p className="mt-1 pl-5.5 font-mono text-xs text-muted-foreground">{c.year}</p>}
+                  </div>
+                  {c.url && (
+                    <Button asChild variant="glass" size="pill" className="mt-4">
+                      <a href={c.url} target="_blank" rel="noreferrer">
+                        View Certificate <ArrowUpRight />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );

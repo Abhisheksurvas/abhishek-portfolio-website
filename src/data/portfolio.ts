@@ -1,181 +1,261 @@
 // All portfolio content lives here so it can be edited in one place.
+// Leave a link as "" when it doesn't exist yet — the matching button is hidden or shown as "coming soon".
 
 export const profile = {
   name: "Abhishek Survase",
   firstName: "Abhishek",
-  role: "Full-Stack Developer | AI Agent Developer",
-  tagline:
-    "I build fast, reliable web apps and AI agents that turn real-world problems into practical, production-ready software.",
-  location: "Maharashtra, India",
-  availability: "Open to internships — Summer 2027",
+  greeting: "Hello, I'm Abhishek 👋",
+  role: "Full-Stack Developer | AI Agent Developer | Computer Science Engineer",
+  shortRole: "Full-Stack Developer | AI Developer",
+  intro:
+    "I'm a passionate developer focused on building intelligent web applications, AI-powered solutions, and modern digital experiences. I enjoy turning ideas into practical products using technology.",
+  focusAreas: ["Full-Stack Development", "AI & Generative AI", "Web Applications", "Problem Solving"],
+  availability: "Open to Internship Opportunities",
+  location: "Pandharpur, Maharashtra",
   email: "abhisheksurvase00@gmail.com",
   github: "https://github.com/Abhisheksurvas",
-  linkedin: "https://www.linkedin.com/in/abhisheksurvase",
-  resume: "/resume.pdf",
+  githubHandle: "Abhisheksurvas",
+  linkedin: "https://linkedin.com/in/abhishek-survase",
+  /** Put the PDF at public/resume/Abhishek_s_resume-1_.pdf */
+  resume: "/resume/Abhishek_s_resume-1_.pdf",
+  resumeFileName: "Abhishek_Survase_Resume.pdf",
 };
 
 export const navLinks = [
+  { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "certifications", label: "Certifications" },
   { id: "contact", label: "Contact" },
 ] as const;
 
-export const stats = [
-  { value: "5+", label: "Full-stack projects shipped" },
-  { value: "3", label: "AI / LLM systems built" },
-  { value: "300+", label: "DSA problems solved" },
+export const about = {
+  body: "I'm a Computer Science and Engineering student at SKN Sinhgad College of Engineering, Pandharpur. I have hands-on experience in frontend and backend development, database management, and AI-based application development. I enjoy solving problems, exploring emerging technologies, and developing useful software applications. My goal is to grow as a Full-Stack Developer and AI Engineer while contributing to real-world projects.",
+  highlights: [
+    {
+      title: "Problem Solver",
+      body: "I break problems into small, clear steps and build solutions that are simple to use and maintain.",
+    },
+    {
+      title: "AI Enthusiast",
+      body: "Exploring Generative AI, LLMs and RAG to build applications that understand and assist people.",
+    },
+    {
+      title: "Full-Stack Developer",
+      body: "Building complete web apps — responsive interfaces, backend APIs and databases working together.",
+    },
+  ],
+  stats: [
+    { value: "B.Tech CSE", label: "2023 – 2027" },
+    { value: "2", label: "Internship experiences" },
+    { value: "5+", label: "Project showcases" },
+  ],
+};
+
+export const education = [
+  {
+    degree: "B.Tech — Computer Science and Engineering",
+    school: "SKN Sinhgad College of Engineering, Pandharpur",
+    period: "2023 – 2027",
+    current: true,
+  },
+  {
+    degree: "Higher Secondary Certificate (HSC)",
+    school: "New English School & Jr. College, Gadegaon",
+    period: "2021 – 2023",
+  },
+  {
+    degree: "Secondary School Certificate (SSC)",
+    school: "New English School & Jr. College, Gadegaon",
+    period: "2020",
+  },
 ];
 
-export const aboutPoints = [
-  {
-    title: "Web development",
-    body: "From pixel-perfect React interfaces to REST APIs on Node.js and MongoDB — I enjoy owning a feature end to end.",
-  },
-  {
-    title: "AI & agents",
-    body: "I build LLM-powered tools with retrieval (RAG), tool-calling and evaluation, focused on answers people can trust.",
-  },
-  {
-    title: "Problem solving",
-    body: "I break messy problems into small, testable pieces and practise data structures and algorithms every week.",
-  },
-  {
-    title: "Practical products",
-    body: "Everything I make starts with a real user — a student, a patient, an admin — and a problem worth solving.",
-  },
-];
-
-export type SkillGroup = { title: string; skills: string[] };
+export type SkillGroupId = "frontend" | "backend" | "database" | "ai" | "tools";
+export type SkillGroup = { id: SkillGroupId; title: string; skills: string[] };
 
 export const skillGroups: SkillGroup[] = [
-  { title: "Languages", skills: ["Python", "JavaScript", "HTML", "CSS"] },
-  { title: "Frontend & Backend", skills: ["React", "Node.js", "MongoDB"] },
-  { title: "AI Engineering", skills: ["AI", "LLM", "RAG"] },
-  { title: "Tooling", skills: ["Git"] },
+  { id: "frontend", title: "Frontend", skills: ["HTML5", "CSS3", "JavaScript", "React.js"] },
+  { id: "backend", title: "Backend", skills: ["Node.js (Basics)", "PHP (Basic)", "Python"] },
+  { id: "database", title: "Database", skills: ["MongoDB", "MySQL"] },
+  {
+    id: "ai",
+    title: "AI & Emerging Technologies",
+    skills: [
+      "Generative AI",
+      "AI/LLMs",
+      "Retrieval-Augmented Generation (RAG)",
+      "AI-powered application development",
+    ],
+  },
+  {
+    id: "tools",
+    title: "Tools & Concepts",
+    skills: ["Git", "REST APIs", "Responsive Web Design", "Database Management"],
+  },
 ];
 
-export const allSkills = skillGroups.flatMap((g) => g.skills);
+export const experience = [
+  {
+    title: "Data Analytics using AI-LLMs — Virtual Internship",
+    org: "Vodafone Idea Foundation & Connecting Dreams Foundation",
+    period: "October 2024 – November 2024",
+    type: "Virtual",
+    points: [
+      "Performed data cleaning and analysis.",
+      "Worked with AI and Large Language Model concepts.",
+      "Created data visualizations.",
+      "Extracted meaningful insights from datasets to support decision-making.",
+    ],
+  },
+  {
+    title: "MERN Stack Development Internship",
+    org: "SKN Sinhgad College of Engineering, Korti, Pandharpur",
+    period: "3 October 2025 – 13 October 2025",
+    type: "On-site",
+    points: [
+      "Developed full-stack web applications using MongoDB, Express.js, React.js, and Node.js.",
+      "Designed responsive frontend interfaces.",
+      "Developed and integrated backend APIs.",
+      "Worked on application frontend and backend integration.",
+    ],
+  },
+];
+
+export const projectFilters = [
+  "All Projects",
+  "Full Stack",
+  "AI / ML",
+  "Web Development",
+  "Security",
+] as const;
+export type ProjectFilter = (typeof projectFilters)[number];
+export type ProjectCategory = Exclude<ProjectFilter, "All Projects">;
+
+export type ProjectVisual = "rag" | "health" | "complaint" | "event" | "auth" | "library";
 
 export type Project = {
   slug: string;
   title: string;
-  tag: string;
+  category: string;
+  highlight: string;
   description: string;
-  highlights: string[];
   tech: string[];
+  categories: ProjectCategory[];
+  visual: ProjectVisual;
+  /** Public repository URL, or "" if not published yet. */
   github: string;
+  /** Live demo URL, or "" until it's deployed. */
   demo: string;
-  featured?: boolean;
+  note?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "edurag-ai",
-    title: "EduRAG AI",
-    tag: "AI · Retrieval-Augmented Generation",
+    title: "EduRAG AI | Engineering Study Assistant",
+    category: "AI · EdTech",
+    highlight: "AI + Document Intelligence",
     description:
-      "An AI-powered education assistant that uses Retrieval-Augmented Generation to give students accurate, context-based answers from their own course materials.",
-    highlights: [
-      "Answers grounded in uploaded PDF notes and course content",
-      "Separate student and teacher dashboards with course management",
-      "Department-wise learning and AI academic assistance",
-    ],
-    tech: ["Python", "LLM", "RAG", "React", "Node.js", "MongoDB"],
+      "An AI-powered educational platform that uses Retrieval-Augmented Generation (RAG) to provide context-aware answers from uploaded study materials. It supports document-based question answering, AI-generated notes, quizzes, and personalized learning.",
+    tech: ["React.js", "Python", "MongoDB", "RAG", "AI/LLMs"],
+    categories: ["AI / ML", "Full Stack"],
+    visual: "rag",
     github: "https://github.com/Abhisheksurvas/EduRAG-AI-System",
-    demo: "https://github.com/Abhisheksurvas/EduRAG-AI-System#readme",
-    featured: true,
+    demo: "",
   },
   {
     slug: "smart-doctor",
     title: "AI-Based Smart Doctor Assistance System",
-    tag: "AI · Healthcare",
+    category: "AI · Healthcare",
+    highlight: "AI Healthcare",
     description:
-      "An AI-powered health assistant that guides users through symptoms, suggests possible conditions and next steps, and helps book the right specialist.",
-    highlights: [
-      "Conversational symptom checker powered by an LLM",
-      "Triage levels with clear 'see a doctor' guidance",
-      "Patient history and appointment dashboard",
-    ],
-    tech: ["Python", "AI", "LLM", "React", "Node.js", "MongoDB"],
+      "An AI-based healthcare assistance project designed to provide users with preliminary health information, symptom-related guidance, and intelligent assistance through a digital interface.",
+    tech: ["Python", "AI", "Machine Learning", "REST API"],
+    categories: ["AI / ML"],
+    visual: "health",
     github: "https://github.com/Abhisheksurvas/ai-healthcare-g",
-    demo: "https://github.com/Abhisheksurvas/ai-healthcare-g#readme",
-    featured: true,
+    demo: "",
+    note: "Educational prototype — not a medical diagnosis tool.",
   },
   {
     slug: "complaint-management",
     title: "Complaint Management System",
-    tag: "Full-Stack · Workflow",
+    category: "Full-Stack · MERN",
+    highlight: "Full-Stack MERN",
     description:
-      "A web app that streamlines registering, tracking and resolving complaints — users submit and follow their issues while admins assign and resolve them.",
-    highlights: ["Complaint submission with live status tracking", "Admin tools to manage, assign and resolve issues"],
-    tech: ["React", "Node.js", "MongoDB", "JavaScript"],
+      "A full-stack complaint management platform that allows users to register complaints and track their status through an integrated frontend and backend system.",
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    categories: ["Full Stack", "Web Development"],
+    visual: "complaint",
     github: "https://github.com/Abhisheksurvas/Complaint-Management-System",
-    demo: "https://github.com/Abhisheksurvas/Complaint-Management-System#readme",
+    demo: "",
   },
   {
     slug: "event-management",
     title: "Event Management System",
-    tag: "Full-Stack · Bookings",
+    category: "Web App · Events",
+    highlight: "Event Organization",
     description:
-      "A college event platform with role-based access: teachers request events, the HOD approves them, students register department-wise and the principal sees everything.",
-    highlights: ["Teacher → HOD approval workflow", "Department-wise registration and downloadable reports"],
-    tech: ["React", "Node.js", "MongoDB", "CSS"],
+      "A web application for organizing, managing, and displaying events with an interactive frontend and backend integration.",
+    tech: ["HTML", "CSS", "JavaScript", "React.js", "Node.js", "MongoDB"],
+    categories: ["Full Stack", "Web Development"],
+    visual: "event",
     github: "https://github.com/Abhisheksurvas/Event-Management-Sys",
-    demo: "https://github.com/Abhisheksurvas/Event-Management-Sys#readme",
+    demo: "",
   },
   {
     slug: "two-factor-auth",
     title: "2-Factor Authentication System",
-    tag: "Security · Auth",
+    category: "Backend · Security",
+    highlight: "Authentication & Security",
     description:
-      "A secure two-factor login and verification system combining a password, an email OTP, and QR-based Google Authenticator (TOTP) codes.",
-    highlights: ["Email OTP verification step", "QR enrollment for Google Authenticator (TOTP)"],
-    tech: ["Node.js", "JavaScript", "MongoDB", "HTML"],
+      "A backend-focused authentication project that enhances login security through OTP and email-based user verification.",
+    tech: ["Python", "OTP", "Email Authentication", "Backend Security"],
+    categories: ["Security"],
+    visual: "auth",
     github: "https://github.com/Abhisheksurvas/NS-Project",
-    demo: "https://github.com/Abhisheksurvas/NS-Project#readme",
+    demo: "",
+  },
+  {
+    slug: "library-management",
+    title: "Library Management System",
+    category: "Web App · Database",
+    highlight: "Library & Database",
+    description:
+      "A web-based library application with search, filtering, PDF viewing, and department-wise categorization of books.",
+    tech: ["PHP", "HTML", "CSS", "MySQL", "XAMPP"],
+    categories: ["Web Development"],
+    visual: "library",
+    github: "https://github.com/Abhisheksurvas/LMS-project-php",
+    demo: "",
   },
 ];
 
-export const certifications = [
-  {
-    title: "Generative AI with Large Language Models",
-    issuer: "DeepLearning.AI · Coursera",
-    year: "2026",
-    url: "https://www.coursera.org/learn/generative-ai-with-llms",
-  },
-  {
-    title: "Python for Everybody Specialization",
-    issuer: "University of Michigan · Coursera",
-    year: "2025",
-    url: "https://www.coursera.org/specializations/python",
-  },
-  {
-    title: "MongoDB Node.js Developer Path",
-    issuer: "MongoDB University",
-    year: "2025",
-    url: "https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path",
-  },
-  {
-    title: "Responsive Web Design",
-    issuer: "freeCodeCamp",
-    year: "2024",
-    url: "https://www.freecodecamp.org/learn/2022/responsive-web-design/",
-  },
+export function filterProjects(list: Project[], filter: ProjectFilter): Project[] {
+  if (filter === "All Projects") return list;
+  return list.filter((p) => p.categories.includes(filter));
+}
+
+export type Certification = {
+  title: string;
+  issuer: string;
+  year?: string;
+  /** Certificate link, or "" — the View button only shows when this is set. */
+  url: string;
+};
+
+export const certifications: Certification[] = [
+  { title: "Generative AI Essentials", issuer: "TCS iON Career Edge", year: "2026", url: "" },
+  { title: "Data Analytics using AI-LLMs", issuer: "AICTE & Vodafone Idea", year: "2024", url: "" },
+  { title: "DBMS", issuer: "IIT Kharagpur — NPTEL", year: "2025", url: "" },
+  { title: "MERN Stack Development Internship", issuer: "LeadSoft", url: "" },
 ];
 
-export const achievements = [
-  {
-    title: "Hackathon Finalist",
-    body: "Top 10 team at an inter-college hackathon for the Smart Doctor Assistance prototype.",
-  },
-  {
-    title: "300+ problems solved",
-    body: "Consistent DSA practice on LeetCode and GeeksforGeeks across arrays, graphs and DP.",
-  },
-  {
-    title: "Open-source contributor",
-    body: "Bug fixes and documentation pull requests to beginner-friendly JavaScript projects.",
-  },
+export const githubFocus = [
+  { title: "Coding & problem solving", body: "Practising logic and clean code through regular project work." },
+  { title: "Full-stack applications", body: "MERN and PHP/MySQL apps with real frontend–backend integration." },
+  { title: "AI project development", body: "RAG and LLM-powered tools like EduRAG AI and the Smart Doctor prototype." },
 ];
