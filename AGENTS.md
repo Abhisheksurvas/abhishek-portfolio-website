@@ -32,5 +32,5 @@ use the editor.
 ## Project rules
 - All portfolio copy, links and project data live in `src/data/portfolio.ts`; section components only render it. Why: content edits stay in one file.
 - The portfolio is a single scrolling page at `/` with in-page section anchors (user asked for one page with sections). Why: nav links scroll to sections.
-- The resume lives at the path in `profile.resume` under `public/`; `ResumeButton` checks it exists and shows a fallback message when missing. Why: never ship a fake resume or a broken download.
+- The resume is the owner's uploaded PDF, referenced through `profile.resume` from the CDN asset pointer in `src/assets/`; `ResumeButton` checks it loads and shows a fallback message when it doesn't. Why: never ship a fake resume or a broken download.
 - Empty `github`/`demo`/`url` fields hide or soften their buttons instead of linking somewhere fake. Why: the owner forbids invented links.
