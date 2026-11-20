@@ -4,6 +4,7 @@ import { navLinks, profile } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ResumeButton } from "./ResumeButton";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -76,6 +77,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <ResumeButton size="pill" label="Resume" className="hidden sm:inline-flex" />
           <Button
             variant="glass"
@@ -114,6 +116,10 @@ export function Navbar() {
               </a>
             </li>
           ))}
+          <li className="flex items-center justify-between px-4 py-2 border-t border-border/40 mt-1 pt-3">
+            <span className="text-sm font-medium text-foreground">Switch theme</span>
+            <ThemeToggle showLabel />
+          </li>
           <li className="p-2">
             <ResumeButton className="w-full" />
           </li>

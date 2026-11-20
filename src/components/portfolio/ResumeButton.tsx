@@ -57,7 +57,7 @@ export function ResumeButton({ variant = "glow", size = "xl", className, label =
 
   return (
     <Button asChild variant={variant} size={size} className={className}>
-      <a href={profile.resume} download={profile.resumeFileName}>
+      <a href={profile.resume} download={profile.resumeFileName} target="_blank" rel="noopener noreferrer">
         <Download /> {label}
       </a>
     </Button>

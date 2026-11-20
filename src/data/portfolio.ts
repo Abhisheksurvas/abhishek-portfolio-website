@@ -1,8 +1,6 @@
 // All portfolio content lives here so it can be edited in one place.
 // Leave a link as "" when it doesn't exist yet — the matching button is hidden or shown as "coming soon".
 
-import resumeAsset from "@/assets/Abhishek_s_resume-1.pdf.asset.json";
-
 export const profile = {
   name: "Abhishek Survase",
   firstName: "Abhishek",
@@ -18,8 +16,8 @@ export const profile = {
   github: "https://github.com/Abhisheksurvas",
   githubHandle: "Abhisheksurvas",
   linkedin: "https://linkedin.com/in/abhishek-survase",
-  /** The owner's own resume PDF, served from CDN storage via the asset pointer. */
-  resume: resumeAsset.url,
+  /** The owner's own resume PDF, served from public folder. */
+  resume: "/Abhishek_s_resume-1.pdf",
   resumeFileName: "Abhishek_s_resume-1.pdf",
 };
 
